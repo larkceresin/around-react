@@ -1,17 +1,25 @@
 import React, {useState} from 'react';
-import image from '../images/Jacques-Cousteau.jpg';
 import {PopupWithForm, Input} from './PopupWithForm.js';
+import ImagePopup from './ImagePopup.js'
 import api from '../utils/Api.js';
-
-let userInfo = [];
-
-    api.getUserInfo().then((res)=>{res.forEach((item)=> userInfo.push(item));
+import Card from './Card.js';
 
 
 function Main(props){
-    const [userName, setUserName] = useState('userInfo.');
-    const [userDescription, setUserDescription] = useState('Explorer');
-    const [userAvatar, setUserAvatar] = useState('https://image.shutterstock.com/image-illustration/image-flu-covid19-virus-cell-600w-1661849266.jpg');
+
+    const [userName, setUserName] = useState("");
+    const [userDescription, setUserDescription] = useState("");
+    const [userAvatar, setUserAvatar] = useState("");
+    const [cards, setCards] = useState([]);
+    api.getUserInfo().then((res)=>{
+        setUserName(res.name)
+        setUserDescription(res.about)
+        setUserAvatar(res.avatar)
+    });
+
+    api.getCardList()
+        .then((res)=>res.forEach((item)=> cards.push(item)));
+        
     return(
         <>
           <section className="profile">
@@ -24,13 +32,17 @@ function Main(props){
                     <button className="profile__edit-button" onClick={props.onEditProfile}></button>
                 </div>
                
-                <p className="profile__profession">Explorer</p>
+                <p className="profile__profession">{userDescription}</p>
             </div>
             <button className="profile__add-button" onClick={props.onAddPlace}></button>
         </section>
         
         <section className="gallery">
-            <ul className="gallery__grid">  </ul>
+            <ul className="gallery__grid">
+            {cards.map((card, index)=>{
+               return <Card key={index} link={card.link} name={card.name} onCardClick={props.onCardClick(card)} likes={card.likes.length}/>;
+             })}
+        </ul>
         </section>
             
             
@@ -49,6 +61,9 @@ function Main(props){
 </PopupWithForm>
 
 <PopupWithForm name="delete" title="Are you sure?" buttonText="Yes"/>
+
+<ImagePopup card={props.card} onClose={props.onClose}/>
         </>
-    )}
+    )
+}
 export default Main
