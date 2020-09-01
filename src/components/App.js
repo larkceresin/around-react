@@ -55,7 +55,7 @@ class App extends React.Component{
             isAddPlaceOpen={this.state.isAddPlaceOpen} 
             onEditAvatar={this.handleEditAvatarClick} 
             isEditAvatarOpen={this.state.isEditAvatarOpen}
-            onCardClick={this.handleCardClick()}
+            onCardClick={(data) => this.handleCardClick(data)}
             card={this.state.selectedCard}
             isImagePopupOpen={this.state.isImagePopupOpen}
             onClose={this.closeAllPopups} />
