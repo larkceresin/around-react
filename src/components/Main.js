@@ -40,7 +40,7 @@ function Main(props){
         <section className="gallery">
             <ul className="gallery__grid">
             {cards.map((card, index)=>{
-               return <Card key={index} link={card.link} name={card.name} onCardClick={props.onCardClick(card)} likes={card.likes.length}/>;
+               return <Card key={index} link={card.link} name={card.name} onCardClick={()=> props.onCardClick(card.link, card.name)} likes={card.likes.length}/>;
              })}
         </ul>
         </section>
@@ -62,7 +62,7 @@ function Main(props){
 
 <PopupWithForm name="delete" title="Are you sure?" buttonText="Yes"/>
 
-<ImagePopup card={props.card} onClose={props.onClose}/>
+<ImagePopup isOpen={props.ImagePopupOpen} name={props.name} link={props.link} onClose={props.onClose}/>
         </>
     )
 }
