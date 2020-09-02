@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {PopupWithForm, Input} from './PopupWithForm.js';
+import React, {useState, useEffect} from 'react';
+import PopupWithForm from './PopupWithForm.js';
+import Input from './Input.js'
 import ImagePopup from './ImagePopup.js'
 import api from '../utils/Api.js';
 import Card from './Card.js';
@@ -16,10 +17,10 @@ function Main(props){
         setUserDescription(res.about)
         setUserAvatar(res.avatar)
     });
-
+    useEffect(() => {
     api.getCardList()
         .then((res)=>res.forEach((item)=> cards.push(item)));
-        
+        });
     return(
         <>
           <section className="profile">
