@@ -5,22 +5,12 @@ import Main from './Main.js';
 
 function App(props){
     const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
-    const [isEditProfileOpen, setisEditProfileOpen] = useState(false);
-    const [isAddPlaceOpen, setisAddPlaceOpen] = useState(false);
-    const [isisImagePopupOpen, setisImagePopupOpen] = useState(false);
-    const [SelectedCardLink, setSelectedCardLink] = useState("");
-    const [SelectedCardName, setSelectedCardName] = useState("");
-    constructor(props){
-        super(props);
-        this.state = {
-            isEditAvatarOpen: false,
-            isEditProfileOpen: false,
-            isAddPlaceOpen: false,
-            isImagePopupOpen: false,
-            selectedCardLink: "",
-            selectedCardName:"",
-        }
-    }
+    const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+    const [isAddPlaceOpen, setIsAddPlaceOpen] = useState(false);
+    const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+    const [selectedCardLink, setSelectedCardLink] = useState("");
+    const [selectedCardName, setSelectedCardName] = useState("");
+    
     function handleCardClick(link, name) {
         setSelectedCardLink(link);
         setSelectedCardName(name);
@@ -46,32 +36,29 @@ function App(props){
             setSelectedCardName("");
             setSelectedCardLink("");
             setIsImagePopupOpen(false);
-        })
-    }
+        }
     
-    render(){
         return (
           <div className="page">
             <div className="page__content">
                 <Header/>
                 <Main 
-            onEditProfile={this.handleEditProfileClick} 
+            onEditProfile={handleEditProfileClick} 
             isEditProfileOpen={isEditProfileOpen} 
-            onAddPlace={this.handleAddPlaceClick} 
+            onAddPlace={handleAddPlaceClick} 
             isAddPlaceOpen={isAddPlaceOpen} 
-            onEditAvatar={this.handleEditAvatarClick} 
+            onEditAvatar={handleEditAvatarClick} 
             isEditAvatarOpen={isEditAvatarOpen}
-            onCardClick={(data) => this.handleCardClick(data)}
+            onCardClick={(data) => handleCardClick(data)}
             cardName={selectedCardName}
             cardLink={selectedCardLink}
             isImagePopupOpen={isImagePopupOpen}
-            onClose={this.closeAllPopups} />
+            onClose={closeAllPopups} />
                 <Footer/>
 
             </div>
         </div>
         );
-    }
 }
 
 export default App;
