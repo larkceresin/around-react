@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+We took our last project: Around the USA and converted much of it over to react to learn react. [View Project Here](https://larkceresin.github.io/around-react/)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
