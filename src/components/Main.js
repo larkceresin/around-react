@@ -39,31 +39,31 @@ function Main(props){
         
         <section className="gallery">
             <ul className="gallery__grid">
-            {cards.map((card, index)=>{
-               return <Card key={index} link={card.link} name={card.name} onCardClick={()=> props.onCardClick(card.link, card.name)} likes={card.likes.length}/>;
-             })}
-        </ul>
+                {cards.map((card, index)=>{
+                return <Card key={index} link={card.link} name={card.name} onCardClick={()=> props.onCardClick(card.link, card.name)} likes={card.likes.length}/>;
+                })}
+            </ul>
         </section>
             
             
-<PopupWithForm name="profile-edit" title="Edit profile" buttonText="Save" isOpen={props.isEditProfileOpen} onClose={props.onClose}>
-    <Input name="name"/>
-    <Input name="profession"/>
-</PopupWithForm>
+        <PopupWithForm name="profile-edit" title="Edit profile" buttonText="Save" isOpen={props.isEditProfileOpen} onClose={props.onClose}>
+            <Input name="name"/>
+            <Input name="profession"/>
+        </PopupWithForm>
 
-<PopupWithForm name="gallery-add" title="New Place" buttonText="Create" isOpen={props.isAddPlaceOpen} onClose={props.onClose}>
-    <Input name="name"/>
-    <Input name="link"/>
-</PopupWithForm>
+        <PopupWithForm name="gallery-add" title="New Place" buttonText="Create" isOpen={props.isAddPlaceOpen} onClose={props.onClose}>
+            <Input name="name"/>
+            <Input name="link"/>
+        </PopupWithForm>
 
-<PopupWithForm name="picture-change" title="Change profile picture" buttonText="Save" isOpen={props.isEditAvatarOpen} onClose={props.onClose}>
-    <Input name="avatar"/>
-</PopupWithForm>
+        <PopupWithForm name="picture-change" title="Change profile picture" buttonText="Save" isOpen={props.isEditAvatarOpen} onClose={props.onClose}>
+            <Input name="avatar"/>
+        </PopupWithForm>
 
-<PopupWithForm name="delete" title="Are you sure?" buttonText="Yes"/>
+        <PopupWithForm name="delete" title="Are you sure?" buttonText="Yes"/>
 
-<ImagePopup isOpen={props.ImagePopupOpen} name={props.name} link={props.link} onClose={props.onClose}/>
-        </>
+        <ImagePopup isOpen={props.isImagePopupOpen} name={props.cardName} link={props.cardLink} onClose={props.onClose}/>
+    </>
     )
 }
 export default Main

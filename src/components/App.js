@@ -40,8 +40,9 @@ class App extends React.Component{
         this.setState({isEditAvatarOpen: false,
             isEditProfileOpen: false,
             isAddPlaceOpen: false,
-            selectedCard: {name:"",
-                          link:""},
+            selectedCardName:"",
+            selectedCardLink:"",
+            isImagePopupOpen:false,
         })
     }
     
@@ -58,8 +59,8 @@ class App extends React.Component{
             onEditAvatar={this.handleEditAvatarClick} 
             isEditAvatarOpen={this.state.isEditAvatarOpen}
             onCardClick={(data) => this.handleCardClick(data)}
-            name={this.state.selectedCardName}
-            link={this.state.selectedCardLink}
+            cardName={this.state.selectedCardName}
+            cardLink={this.state.selectedCardLink}
             isImagePopupOpen={this.state.isImagePopupOpen}
             onClose={this.closeAllPopups} />
                 <Footer/>
