@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import Main from './Main.js';
 
-class App extends React.Component{
+function App(props){
+    const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
+    const [isEditProfileOpen, setisEditProfileOpen] = useState(false);
+    const [isAddPlaceOpen, setisAddPlaceOpen] = useState(false);
+    const [isisImagePopupOpen, setisImagePopupOpen] = useState(false);
+    const [SelectedCardLink, setSelectedCardLink] = useState("");
+    const [SelectedCardName, setSelectedCardName] = useState("");
     constructor(props){
         super(props);
         this.state = {
@@ -15,34 +21,31 @@ class App extends React.Component{
             selectedCardName:"",
         }
     }
-    handleCardClick(link, name) {
-        this.setState({selectedCardLink:link,
-                        selectedCardName:name,
-                       isImagePopupOpen: true,
-                      });
-        
+    function handleCardClick(link, name) {
+        setSelectedCardLink(link);
+        setSelectedCardName(name);
+        setIsImagePopupOpen(true);    
     }
     
-    handleEditAvatarClick = (e) => {
-        this.setState({isEditAvatarOpen: true})
+    const handleEditAvatarClick = (e) => {
+       setIsEditAvatarOpen(true);
     }
     
-    handleEditProfileClick = (e) =>{
-       this.setState({isEditProfileOpen: true})
-   
+    const handleEditProfileClick = (e) =>{
+       setIsEditProfileOpen(true)
     }
     
-    handleAddPlaceClick = (e) => {
-        this.setState({isAddPlaceOpen: true})
+    const handleAddPlaceClick = (e) => {
+        setIsAddPlaceOpen(true);
     }
-    closeAllPopups = (e) => {
+    const closeAllPopups = (e) => {
         if(e.target === e.currentTarget)
-        this.setState({isEditAvatarOpen: false,
-            isEditProfileOpen: false,
-            isAddPlaceOpen: false,
-            selectedCardName:"",
-            selectedCardLink:"",
-            isImagePopupOpen:false,
+            setIsEditAvatarOpen(false);
+            setIsEditProfileOpen(false);
+            setIsAddPlaceOpen(false);
+            setSelectedCardName("");
+            setSelectedCardLink("");
+            setIsImagePopupOpen(false);
         })
     }
     
@@ -53,15 +56,15 @@ class App extends React.Component{
                 <Header/>
                 <Main 
             onEditProfile={this.handleEditProfileClick} 
-            isEditProfileOpen={this.state.isEditProfileOpen} 
+            isEditProfileOpen={isEditProfileOpen} 
             onAddPlace={this.handleAddPlaceClick} 
-            isAddPlaceOpen={this.state.isAddPlaceOpen} 
+            isAddPlaceOpen={isAddPlaceOpen} 
             onEditAvatar={this.handleEditAvatarClick} 
-            isEditAvatarOpen={this.state.isEditAvatarOpen}
+            isEditAvatarOpen={isEditAvatarOpen}
             onCardClick={(data) => this.handleCardClick(data)}
-            cardName={this.state.selectedCardName}
-            cardLink={this.state.selectedCardLink}
-            isImagePopupOpen={this.state.isImagePopupOpen}
+            cardName={selectedCardName}
+            cardLink={selectedCardLink}
+            isImagePopupOpen={isImagePopupOpen}
             onClose={this.closeAllPopups} />
                 <Footer/>
 
