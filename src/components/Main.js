@@ -20,7 +20,7 @@ function Main(props){
             setUserAvatar(res.avatar)
         });
     api.getCardList()
-        .then((res)=>res.forEach((item)=> cards.push(item)));
+        .then((res)=>res.forEach((item)=> setCards( [...this.state.arrayvar, item]));
         });
     return(
         <>
