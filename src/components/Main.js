@@ -12,12 +12,13 @@ function Main(props){
     const [userDescription, setUserDescription] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
     const [cards, setCards] = useState([]);
-    api.getUserInfo().then((res)=>{
-        setUserName(res.name)
-        setUserDescription(res.about)
-        setUserAvatar(res.avatar)
-    });
+ 
     useEffect(() => {
+        api.getUserInfo().then((res)=>{
+            setUserName(res.name)
+            setUserDescription(res.about)
+            setUserAvatar(res.avatar)
+        });
     api.getCardList()
         .then((res)=>res.forEach((item)=> cards.push(item)));
         });
