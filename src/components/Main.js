@@ -19,9 +19,9 @@ function Main(props){
             setUserDescription(res.about)
             setUserAvatar(res.avatar)
         });
+        
     api.getCardList()
-        .then((res)=>res.forEach((cards, item)=> setCards( [...cards, item]));
-        });
+        .then((res)=>setCards(res))})
     return(
         <>
           <section className="profile">
