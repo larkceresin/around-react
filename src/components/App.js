@@ -44,7 +44,7 @@ function App(){
     }
     function handleCardDelete(deletedCard){
         api.removeCard(deletedCard._id)
-        .then( cards.filter(card=> card != deletedCard))
+        .then( cards.filter(card=> card !== deletedCard))
         .catch(err => console.log(err))
     }
 
