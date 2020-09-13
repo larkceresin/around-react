@@ -2,29 +2,31 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import Input from './Input';
 
-function AddPlacePopup(props){
+function AddPlacePopup(props) {
     const [cardName, setCardName] = React.useState("");
     const [cardLink, setCardLink] = React.useState("");
-    
 
-    function handleCardNameChange(e){
+
+    function handleCardNameChange(e) {
         setCardName(e.target.value)
     }
-    function handleCardLinkChange(e){
+    function handleCardLinkChange(e) {
         setCardLink(e.target.value)
     }
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
         props.onAddPlace({
-           name: cardName,
-           link: cardLink,
+            name: cardName,
+            link: cardLink,
         });
+
     }
-    return(
+    return (
         <PopupWithForm handleSubmit={handleSubmit} name="gallery-add" title="New Place" buttonText="Create" isOpen={props.isOpen} onClose={props.onClose}>
-            <Input name="name" handleChange={handleCardNameChange} type="text"/>
-            <Input name="link" handleChange={handleCardLinkChange} type="url"/>
+            <Input name="name" handleChange={handleCardNameChange} type="text" defaultValue="" />
+            <Input name="link" handleChange={handleCardLinkChange} type="url" defaultValue="" />
         </PopupWithForm>
-    )}
+    )
+}
 
 export default AddPlacePopup
